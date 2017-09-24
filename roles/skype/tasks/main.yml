@@ -1,4 +1,18 @@
 ---
 
+- name: Check if Skype is installed
+  command: dpkg-query -W skype
+  register: skype_check_deb
+  failed_when: skype_check_deb.rc > 1
+  changed_when: skype_check_deb.rc == 1
+
+- name: Download Skype Latest
+  get_url: url="https://go.skype.com/linux.deb" dest="/tmp/download-skype-latest.deb"
+  when: skype_check_deb.rc == 1
+
 - name: Install Skype
-  apt: pkg=skype state=latest update_cache=yes cache_valid_time={{ aptcachetime }}
+  apt: deb="/tmp/download-skype-latest.deb"
+  when: skype_check_deb.rc == 1
+
+- name: Clean Skype deb file
+  file: path=/tmp/download-skype-latest.deb state=absent
