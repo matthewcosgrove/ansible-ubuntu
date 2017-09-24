@@ -7,7 +7,7 @@
   changed_when: skype_check_deb.rc == 1
 
 - name: Download Skype Latest
-  get_url: url="https://go.skype.com/linux.deb" dest="/tmp/download-skype-latest.deb"
+  get_url: url="https://www.skype.com/en/download-skype/skype-for-linux/downloading/?type=weblinux-deb" dest="/tmp/download-skype-latest.deb"
   when: skype_check_deb.rc == 1
 
 - name: Install Skype
