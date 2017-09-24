@@ -17,11 +17,11 @@
     # - { role: beanstalkd, become: true }
     # - { role: blackfire, become: true }
     # - { role: composer, become: true }
-    # - { role: docker, become: true }
+    - { role: docker, become: true }
     # - { role: elasticsearch, become: true }
     # - { role: exim, become: true }
     # - { role: fail2ban, become: true }
-    # - { role: gvm, become: true }
+    - { role: gvm, become: true }
     # - { role: hhvm, become: true }
     # - { role: mailcatcher, become: true }
     # - { role: mailhog, become: true }
@@ -30,24 +30,24 @@
     # - { role: mysql56, become: true }
     # - { role: nginx, become: true }
     # - { role: nginx-php-fpm, become: true }
-    # - { role: nodejs, become: true }
+    - { role: nodejs, become: true }
     # - { role: php, become: true }
     # - { role: php-pecl, become: true }
     # - { role: php-phar-tools, become: true }
-    # - { role: python, become: true }
+    - { role: python, become: true }
     # - { role: redis, become: true }
     # - { role: rbenv, become: true }
     # - { role: ssh, become: true }
     # Desktop roles
     # - { role: desktop, become: true }
-    # - { role: desktop-cleanup, become: true }
+    - { role: desktop-cleanup, become: true }
     # - { role: desktop-autostart, become: true }
     # - { role: desktop-preferences-unity }
     # - { role: adapta-theme, become: true }
     # - { role: albert, become: true }
     # - { role: altyo, become: true }
     # - { role: arc-theme, become: true }
-    # - { role: atom, become: true }
+    - { role: atom, become: true }
     # - { role: chromium, become: true }
     # - { role: claws-mail, become: true }
     # - { role: compton, become: true }
@@ -56,7 +56,7 @@
     # - { role: filezilla, become: true }
     # - { role: firefox, become: true }
     # - { role: flatabulous, become: true }
-    # - { role: gdrive, become: true }
+    - { role: gdrive, become: true }
     # - { role: geary, become: true }
     # - { role: gimp, become: true }
     # - { role: grub-customizer, become: true }
@@ -79,17 +79,17 @@
     # - { role: shutter, become: true }
     # - { role: sift, become: true }
     # - { role: slop, become: true }
-    # - { role: skype, become: true }
+    - { role: skype, become: true }
     # - { role: smartgit, become: true }
-    # - { role: spotify, become: true }
+    - { role: spotify, become: true }
     # - { role: sublime3, become: true }
     # - { role: sunflower, become: true }
     # - { role: teamviewer, become: true }
     # - { role: thunderbird, become: true }
     # - { role: ultra-flat-icons, become: true }
     # - { role: urxvt-perls }
-    # - { role: vagrant, become: true }
-    # - { role: virtualbox, become: true }
+    - { role: vagrant, become: true }
+    - { role: virtualbox, become: true }
     # - { role: vokoscreen, become: true }
     # - { role: wine, become: true }
     # - { role: workrave, become: true }
