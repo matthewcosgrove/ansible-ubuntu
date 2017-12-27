@@ -7,4 +7,4 @@
   apt_repository: repo="deb http://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib" state=present
 
 - name: Install VirtualBox {{ virtualbox.version }}
-  apt: pkg=virtualbox-{{ virtualbox.version }} state=present
+  apt: pkg=virtualbox-{{ virtualbox.version }} state=present allow_unauthenticated=yes
