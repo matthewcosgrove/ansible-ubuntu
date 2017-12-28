@@ -120,12 +120,14 @@
     - name: Install libgnome-keyring-dev for git credential helper
       apt: pkg=libgnome-keyring-dev state=latest
       become: true
-    - name: Set up credential helper
-      command: "{{item}}"
+    - name: Set up gnome-keyring for git credential helper
+      command: make --directory=/usr/share/doc/git/contrib/credential/gnome-keyring
       become: true
-      with_items:
-        - make --directory=/usr/share/doc/git/contrib/credential/gnome-keyring
-        - git config --global credential.helper /usr/share/doc/git/contrib/credential/gnome-keyring/git-credential-gnome-keyring
+    - name: Set up git credential helper
+      git_config:
+        name: credential.helper
+        scope: global
+        value: /usr/share/doc/git/contrib/credential/gnome-keyring/git-credential-gnome-keyring
     - name: gvm install go{{go_version}} --binary
       gvm:
         version: go{{go_version}}
