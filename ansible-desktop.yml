@@ -2,6 +2,13 @@
 
 - name: Ubuntu desktop environment playbook
   hosts: localhost
+  vars:
+    - go_version: 1.8
+  pre_tasks:
+    - name: check .gvm does not exist
+      stat:
+        path: ~/.gvm
+      register: stat_gvm_result
   roles:
     # Common roles
     # - { role: locales, become: true }
@@ -22,6 +29,8 @@
     # - { role: exim, become: true }
     # - { role: fail2ban, become: true }
     - role: suzuki-shunsuke.gvm
+      when: stat_gvm_result.stat.exists == False
+    - role: suzuki-shunsuke.gvm-module
     # - { role: gvm, become: true }
     # - { role: hhvm, become: true }
     # - { role: mailcatcher, become: true }
@@ -106,3 +115,10 @@
     # - { role: browsersync }
     # - { role: bower }
     # - { role: webpack }
+
+  tasks:
+    - name: gvm install go{{go_version}} --binary
+      gvm:
+        version: go{{go_version}}
+        gvm_root: "~/.gvm"
+        binary: yes
