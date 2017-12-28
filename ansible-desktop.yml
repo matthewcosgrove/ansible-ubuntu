@@ -128,6 +128,11 @@
         name: credential.helper
         scope: global
         value: /usr/share/doc/git/contrib/credential/gnome-keyring/git-credential-gnome-keyring
+    - name: Set up git to suppress message on push
+      git_config:
+        name: push.default
+        scope: global
+        value: simple
     - name: gvm install go{{go_version}} --binary
       gvm:
         version: go{{go_version}}
