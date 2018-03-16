@@ -47,7 +47,7 @@
     - { role: python, become: true }
     # - { role: redis, become: true }
     # - { role: rbenv, become: true }
-    # - { role: ssh, become: true }
+    - { role: ssh, become: true }
     # Desktop roles
     # - { role: desktop, become: true }
     - { role: desktop-cleanup, become: true }
@@ -58,6 +58,7 @@
     # - { role: altyo, become: true }
     # - { role: arc-theme, become: true }
     - { role: atom, become: true }
+    - { role: cmprescott.chrome, become: true }
     # - { role: chromium, become: true }
     # - { role: claws-mail, become: true }
     # - { role: compton, become: true }
@@ -132,7 +133,7 @@
       git_config:
         name: push.default
         scope: global
-        value: simple
+        # value: simple
     - name: gvm install go{{go_version}} --binary
       gvm:
         version: go{{go_version}}

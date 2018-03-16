@@ -15,6 +15,8 @@ else
     echo "Ansible already installed"
 fi
 
+ansible-galaxy install cmprescott.chrome
+
 #####################################
 # Display real installation process #
 echo ""
