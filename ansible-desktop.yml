@@ -4,11 +4,26 @@
   hosts: localhost
   vars:
     - go_version: 1.8
+  environment:
+    DEBIAN_FRONTEND: noninteractive
   pre_tasks:
     - name: check .gvm does not exist
       stat:
         path: ~/.gvm
       register: stat_gvm_result
+    - name:  add apt repo for git
+      become: true
+      apt_repository:
+        repo: ppa:git-core/ppa
+    - name:  update apt packages
+      become: true
+      apt:
+        update_cache: yes
+    - name:  install latest git
+      become: true
+      apt:
+        name: git
+        state: latest
   roles:
     # Common roles
     # - { role: locales, become: true }
