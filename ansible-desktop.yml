@@ -21,8 +21,18 @@
         update_cache: yes
     - name:  install latest git
       become: true
-      apt:
+      package:
         name: git
+        state: latest
+    - name:  install latest curl
+      become: true
+      package:
+        name: curl
+        state: latest
+    - name:  install latest bison
+      become: true
+      package:
+        name: bison
         state: latest
   roles:
     # Common roles
