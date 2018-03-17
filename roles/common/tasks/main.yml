@@ -19,9 +19,15 @@
   apt_repository:
     repo: ppa:git-core/ppa
 
+- name: add apt repo for jo
+  become: true
+  apt_repository:
+    repo: ppa:duggan/jo
+
 - name: Install common packages
   apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time={{ aptcachetime }}
   with_items:
+    - jo
     # - afuse
     # - aptitude
     # - axel
