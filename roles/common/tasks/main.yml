@@ -17,53 +17,54 @@
 - name: Install common packages
   apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time={{ aptcachetime }}
   with_items:
-    - afuse
-    - aptitude
-    - axel
-    - build-essential
-    - bzip2
-    - colortest
+    # - afuse
+    # - aptitude
+    # - axel
+    # - build-essential
+    # - bzip2
+    # - colortest
     - curl
-    - diffutils
-    - dos2unix
-    - fdupes
-    - ftp-ssl
-    - gawk
-    - gcc
+    # - diffutils
+    # - dos2unix
+    # - fdupes
+    # - ftp-ssl
+    # - gawk
+    # - gcc
     - git
     - grep
     - gzip
-    - htop
-    - httping
-    - iftop
-    - imagemagick
-    - iotop
+    # - htop
+    # - httping
+    # - iftop
+    # - imagemagick
+    # - iotop
     - less
-    - lftp
-    - make
-    - nano
-    - nfs-common
+    # - lftp
+    # - make
+    # - nano
+    # - nfs-common
     - nmap
     - openssl
-    - p7zip
-    - pv
-    - pwgen
-    - ranger
-    - rar
-    - rsync
-    - smbclient
-    - software-properties-common
-    - sshfs
+    # - p7zip
+    # - pv
+    # - pwgen
+    # - ranger
+    # - rar
+    # - rsync
+    # - smbclient
+    # - software-properties-common
+    # - sshfs
     - sshpass
     - tar
-    - tmux
-    - trash-cli
-    - tig
+    # - tmux
+    # - trash-cli
+    # - tig
     - unzip
     - vim
     - wget
     - whois
     - zip
 
-- name: Upgrade installed packages
-  apt: upgrade=yes
+# Fails - raised as bug /ansible/ansible/issues/29509
+# - name: Upgrade installed packages
+#   apt: upgrade=yes
