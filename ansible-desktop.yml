@@ -15,6 +15,10 @@
       become: true
       apt_repository:
         repo: ppa:git-core/ppa
+    - name: update git config globally setting user.email
+      command: git config --global user.email mc.matthew.cosgrove@gmail.com
+    - name: update git config globally setting user.name
+      command: git config --global user.name matthewcosgrove
     - name:  install latest bison
       become: true
       package:
