@@ -24,13 +24,7 @@
     # Server roles
     # - { role: apache2, become: true }
     # - { role: apache2-php, become: true }
-    # - { role: beanstalkd, become: true }
-    # - { role: blackfire, become: true }
-    # - { role: composer, become: true }
     - { role: docker, become: true }
-    # - { role: elasticsearch, become: true }
-    # - { role: exim, become: true }
-    # - { role: fail2ban, become: true }
     - role: suzuki-shunsuke.gvm
       when: stat_gvm_result.stat.exists == False
     - role: suzuki-shunsuke.gvm-module
