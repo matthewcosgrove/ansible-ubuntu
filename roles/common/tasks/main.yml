@@ -20,6 +20,7 @@
     # - afuse
     # - aptitude
     # - axel
+    - bison
     # - build-essential
     # - bzip2
     # - colortest

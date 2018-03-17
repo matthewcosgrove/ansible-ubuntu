@@ -11,19 +11,7 @@
       stat:
         path: ~/.gvm
       register: stat_gvm_result
-    - name:  add apt repo for git
-      become: true
-      apt_repository:
-        repo: ppa:git-core/ppa
-    - name: update git config globally setting user.email
-      command: git config --global user.email mc.matthew.cosgrove@gmail.com
-    - name: update git config globally setting user.name
-      command: git config --global user.name matthewcosgrove
-    - name:  install latest bison
-      become: true
-      package:
-        name: bison
-        state: latest
+
   roles:
     # Common roles
     # - { role: locales, become: true }
@@ -47,20 +35,8 @@
       when: stat_gvm_result.stat.exists == False
     - role: suzuki-shunsuke.gvm-module
     # - { role: gvm, become: true }
-    # - { role: hhvm, become: true }
-    # - { role: mailcatcher, become: true }
-    # - { role: mailhog, become: true }
-    # - { role: memcached, become: true }
-    # - { role: mysql57, become: true }
-    # - { role: mysql56, become: true }
-    # - { role: nginx, become: true }
-    # - { role: nginx-php-fpm, become: true }
     - { role: nodejs, become: true }
-    # - { role: php, become: true }
-    # - { role: php-pecl, become: true }
-    # - { role: php-phar-tools, become: true }
     - { role: python, become: true }
-    # - { role: redis, become: true }
     # - { role: rbenv, become: true }
     - { role: ssh, become: true }
     # Desktop roles
@@ -68,59 +44,17 @@
     - { role: desktop-cleanup, become: true }
     # - { role: desktop-autostart, become: true }
     # - { role: desktop-preferences-unity }
-    # - { role: adapta-theme, become: true }
-    # - { role: albert, become: true }
-    # - { role: altyo, become: true }
-    # - { role: arc-theme, become: true }
     - { role: atom, become: true }
     - { role: cmprescott.chrome, become: true }
-    # - { role: chromium, become: true }
-    # - { role: claws-mail, become: true }
-    # - { role: compton, become: true }
-    # - { role: copyq, become: true }
-    # - { role: dbeaver, become: true }
-    # - { role: filezilla, become: true }
-    # - { role: firefox, become: true }
-    # - { role: flatabulous, become: true }
     - { role: gdrive, become: true }
-    # - { role: geary, become: true }
-    # - { role: gimp, become: true }
-    # - { role: grub-customizer, become: true }
-    # - { role: hubic, become: true }
-    # - { role: indicator-sysmonitor, become: true }
-    # - { role: ksuperkey, become: true }
-    # - { role: libreoffice, become: true }
-    # - { role: maim, become: true }
-    # - { role: min, become: true }
-    # - { role: mysql-workbench, become: true }
-    # - { role: nautilus-plugins, become: true }
-    # - { role: nemo, become: true }
-    # - { role: notepadqq, become: true }
-    # - { role: notify-osd, become: true }
-    # - { role: qutebrowser, become: true }
-    # - { role: remarkable, become: true }
     # - { role: remmina, become: true }
-    # - { role: ripgrep, become: true }
-    # - { role: rofi, become: true }
-    # - { role: shutter, become: true }
-    # - { role: sift, become: true }
-    # - { role: slop, become: true }
     # - { role: skype, become: true }
     # - { role: smartgit, become: true }
     # - { role: spotify, become: true }
-    # - { role: sublime3, become: true }
-    # - { role: sunflower, become: true }
     # - { role: teamviewer, become: true }
-    # - { role: thunderbird, become: true }
-    # - { role: ultra-flat-icons, become: true }
-    # - { role: urxvt-perls }
     - { role: vagrant, become: true }
     - { role: virtualbox, become: true }
-    # - { role: vokoscreen, become: true }
     # - { role: wine, become: true }
-    # - { role: workrave, become: true }
-    # - { role: xfce-dockbarx, become: true }
-    # - { role: xmind, become: true }
     # bspwm
     # - { role: sxhkd, become: true }
     # - { role: bspwm, become: true }
@@ -133,6 +67,14 @@
     # - { role: webpack }
 
   tasks:
+    - name:  add apt repo for git
+      become: true
+      apt_repository:
+        repo: ppa:git-core/ppa
+    - name: update git config globally setting user.email
+      command: git config --global user.email mc.matthew.cosgrove@gmail.com
+    - name: update git config globally setting user.name
+      command: git config --global user.name matthewcosgrove
     - name: Install libgnome-keyring-dev for git credential helper
       apt: pkg=libgnome-keyring-dev state=latest
       become: true
