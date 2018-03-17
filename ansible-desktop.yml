@@ -60,10 +60,18 @@
     # - { role: webpack }
 
   tasks:
-    - name: Ensure ssh key generated
+    - name: Ensure ssh key generated ready to upload to GitHub
       command: ssh-keygen -t rsa -f ~/.ssh/id_rsa -N ''
       args:
         creates: ~/.ssh/id_rsa
+    - name: Wait until creds file creds-deploy-key.netrc is created and updated with password
+      wait_for:
+        path: creds-deploy-key.netrc
+        search_regex: .*password\s\w+
+    - name: Upload deploy key to GitHub
+      shell: KEY=$( cat ~/.ssh/id_rsa.pub );TITLE=${KEY/* };JSON=$( jo title="$TITLE" key="$KEY" );curl --netrc-file creds-deploy-key.netrc -d "$JSON" https://api.github.com/user/keys
+      args:
+        executable: /bin/bash
     - name: Install libgnome-keyring-dev for git credential helper
       apt: pkg=libgnome-keyring-dev state=latest
       become: true
