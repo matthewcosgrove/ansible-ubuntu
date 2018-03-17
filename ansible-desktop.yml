@@ -19,7 +19,6 @@
     # - { role: zsh, become: true }
     # - { role: dotfiles, become: true }
     # - { role: java-openjdk, become: true }
-    # - { role: phantomjs, become: true }
     # - { role: projects-installer }
     # Server roles
     # - { role: apache2, become: true }
@@ -61,10 +60,6 @@
     # - { role: webpack }
 
   tasks:
-    - name: update git config globally setting user.email
-      command: git config --global user.email mc.matthew.cosgrove@gmail.com
-    - name: update git config globally setting user.name
-      command: git config --global user.name matthewcosgrove
     - name: Install libgnome-keyring-dev for git credential helper
       apt: pkg=libgnome-keyring-dev state=latest
       become: true
@@ -81,6 +76,16 @@
         name: push.default
         scope: global
         # value: simple
+    - name: update git config globally setting user.email
+      git_config:
+        name: user.email
+        scope: global
+        value: mc.matthew.cosgrove@gmail.com
+    - name: update git config globally setting user.name
+      git_config:
+        name: user.name
+        scope: global
+        value: matthewcosgrove
     - name: gvm install go{{go_version}} --binary
       gvm:
         version: go{{go_version}}
