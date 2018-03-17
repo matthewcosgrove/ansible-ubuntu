@@ -14,6 +14,11 @@
 - name: Ensure that Aptitude repositories are up to date
   apt: update_cache=yes cache_valid_time={{ aptcachetime }}
 
+- name: add apt repo for git
+  become: true
+  apt_repository:
+    repo: ppa:git-core/ppa
+
 - name: Install common packages
   apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time={{ aptcachetime }}
   with_items:

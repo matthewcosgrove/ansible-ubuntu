@@ -67,10 +67,6 @@
     # - { role: webpack }
 
   tasks:
-    - name:  add apt repo for git
-      become: true
-      apt_repository:
-        repo: ppa:git-core/ppa
     - name: update git config globally setting user.email
       command: git config --global user.email mc.matthew.cosgrove@gmail.com
     - name: update git config globally setting user.name
