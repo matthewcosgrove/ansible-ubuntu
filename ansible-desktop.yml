@@ -60,6 +60,10 @@
     # - { role: webpack }
 
   tasks:
+    - name: Ensure ssh key generated
+      command: ssh-keygen -t rsa -f ~/.ssh/id_rsa -N ''
+      args:
+        creates: ~/.ssh/id_rsa
     - name: Install libgnome-keyring-dev for git credential helper
       apt: pkg=libgnome-keyring-dev state=latest
       become: true
