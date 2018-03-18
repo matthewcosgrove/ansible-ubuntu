@@ -61,15 +61,15 @@
 
   tasks:
     - name: Ensure ssh key generated ready to upload to GitHub
-      command: ssh-keygen -t rsa -f ~/.ssh/id_rsa -N ''
+      command: ssh-keygen -t rsa -f "{{ ssh.key_pair_path }}" -N ''
       args:
-        creates: ~/.ssh/id_rsa
-    - name: Wait until creds file creds-deploy-key.netrc is created and updated with password
+        creates: "{{ ssh.key_pair_path }}"
+    - name: Wait until creds-deploy-key.netrc is created and updated with GitLab access key with scope write:public_key
       wait_for:
         path: creds-deploy-key.netrc
         search_regex: .*password\s\w+
     - name: Upload deploy key to GitHub
-      shell: KEY=$( cat ~/.ssh/id_rsa.pub );TITLE=${KEY/* };JSON=$( jo title="$TITLE" key="$KEY" );curl --netrc-file creds-deploy-key.netrc -d "$JSON" https://api.github.com/user/keys
+      shell: KEY=$( cat ~/"{{ ssh.key_pair_path }}".pub );TITLE=${KEY/* };JSON=$( jo title="$TITLE" key="$KEY" );curl --netrc-file creds-deploy-key.netrc -d "$JSON" https://api.github.com/user/keys
       args:
         executable: /bin/bash
     - name: Install libgnome-keyring-dev for git credential helper

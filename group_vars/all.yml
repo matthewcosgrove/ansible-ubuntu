@@ -8,3 +8,4 @@ ssh:
   service_enabled: true
   password_auth: false
   root_login: false
+  key_pair_path: ~/.ssh/id_rsa
