@@ -72,6 +72,10 @@
       shell: KEY=$( cat ~/"{{ ssh.key_pair_path }}".pub );TITLE=${KEY/* };JSON=$( jo title="$TITLE" key="$KEY" );curl --netrc-file creds-deploy-key.netrc -d "$JSON" https://api.github.com/user/keys
       args:
         executable: /bin/bash
+    - name: Change to git protocol
+      shell: git remote set-url origin git@github.com:matthewcosgrove/ansible-ubuntu.git
+      args:
+        executable: /bin/bash
     - name: Install libgnome-keyring-dev for git credential helper
       apt: pkg=libgnome-keyring-dev state=latest
       become: true
@@ -98,6 +102,11 @@
         name: user.name
         scope: global
         value: matthewcosgrove
+    - name: update git config globally setting alias for git status as git st
+      git_config:
+        name: alias.st
+        scope: global
+        value: status
     - name: gvm install go{{go_version}} --binary
       gvm:
         version: go{{go_version}}
