@@ -64,12 +64,20 @@
       command: ssh-keygen -t rsa -f "{{ ssh.key_pair_path }}" -N ''
       args:
         creates: "{{ ssh.key_pair_path }}"
-    - name: Wait until creds-deploy-key.netrc is created and updated with GitLab access key with scope write:public_key
+    - name: Wait until creds-deploy-key.netrc is created from creds-deploy-key.netrc.template and updated with GitHub access key with scope write:public_key
       wait_for:
         path: creds-deploy-key.netrc
         search_regex: .*password\s\w+
-    - name: Upload deploy key to GitHub
+    - name: Upload SSH key to GitHub
       shell: KEY=$( cat ~/"{{ ssh.key_pair_path }}".pub );TITLE=${KEY/* };JSON=$( jo title="$TITLE" key="$KEY" );curl --netrc-file creds-deploy-key.netrc -d "$JSON" https://api.github.com/user/keys
+      args:
+        executable: /bin/bash
+    - name: Wait until creds-for-curl-gitlab.txt is created from creds-for-curl-gitlab.txt.template and updated with GitLab access key with scope api
+      wait_for:
+        path: creds-for-curl-gitlab.txt
+        search_regex: .*private_token=\w+
+    - name: Upload SSH key to GitLab
+      shell: KEY=$( cat ~/"{{ ssh.key_pair_path }}".pub );TITLE=${KEY/* };curl -X POST -K creds-for-curl-gitlab.txt -F "title=$TITLE" -F "key=$KEY" "https://gitlab.com/api/v4/user/keys"
       args:
         executable: /bin/bash
     - name: Change to git protocol
