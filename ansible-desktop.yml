@@ -64,12 +64,12 @@
       command: ssh-keygen -t rsa -f "{{ ssh.key_pair_path }}" -N ''
       args:
         creates: "{{ ssh.key_pair_path }}"
-    - name: Wait until creds-deploy-key.netrc is created from creds-deploy-key.netrc.template and updated with GitHub access key with scope write:public_key
+    - name: Wait until creds-for-curl-github.netrc is created from creds-for-curl-github.netrc.template and updated with GitHub access key with scope write:public_key
       wait_for:
-        path: creds-deploy-key.netrc
+        path: creds-for-curl-github.netrc
         search_regex: .*password\s\w+
     - name: Upload SSH key to GitHub
-      shell: KEY=$( cat {{ ssh.key_pair_path }}.pub );TITLE=${KEY/* };JSON=$( jo title="$TITLE" key="$KEY" );curl --netrc-file creds-deploy-key.netrc -d "$JSON" https://api.github.com/user/keys
+      shell: KEY=$( cat {{ ssh.key_pair_path }}.pub );TITLE=${KEY/* };JSON=$( jo title="$TITLE" key="$KEY" );curl --netrc-file creds-for-curl-github.netrc -d "$JSON" https://api.github.com/user/keys
       args:
         executable: /bin/bash
     - name: Wait until creds-for-curl-gitlab.txt is created from creds-for-curl-gitlab.txt.template and updated with GitLab access key with scope api
