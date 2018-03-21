@@ -1,1 +1,2 @@
+# worth a read https://stackoverflow.com/questions/33794842/forcing-curl-to-get-a-password-from-the-environment
 machine api.github.com login matthewcosgrove password <password>
