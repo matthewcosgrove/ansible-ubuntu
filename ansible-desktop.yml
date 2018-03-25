@@ -131,7 +131,7 @@
         - /tmp/ssh-install/libgssapi-krb5-2_1.14.3+dfsg-2ubuntu1_amd64.deb
         - /tmp/ssh-install/openssh-client_7.5p1-10_amd64.deb
     - name: fix dependency issues as a result of manual upgrade of ssh client
-      shell: apt-get -f install
+      shell: apt-get -yqf install
       become: true
     - name: gvm install go{{go_version}} --binary
       gvm:
