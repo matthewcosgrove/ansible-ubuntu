@@ -115,17 +115,6 @@
         name: alias.st
         scope: global
         value: status
-    # https://gist.github.com/stefansundin/0fd6e9de172041817d0b8a75f1ede677
-    # - name: Uninstall previous ssh client
-    #   apt:
-    #     name: "{{ item }}"
-    #     state: absent
-    #   become: true
-    #   with_items:
-    #     - libkrb5support0
-    #     - libkrb5-3
-    #     - libgssapi-krb5-2
-    #     - openssh-client
     - name: Upgrade ssh to 7.5 (download binaries)
       shell: wget -nc "{{ item }}" -P /tmp/ssh-install
       with_items:
