@@ -31,7 +31,7 @@
     - { role: nodejs, become: true }
     - { role: python, become: true }
     # - { role: rbenv, become: true }
-    # - { role: ssh, become: true }
+    - { role: ssh, become: true }
     # Desktop roles
     # - { role: desktop, become: true }
     - { role: desktop-cleanup, become: true }
@@ -130,6 +130,9 @@
         - /tmp/ssh-install/libkrb5-3_1.14.3+dfsg-2ubuntu1_amd64.deb
         - /tmp/ssh-install/libgssapi-krb5-2_1.14.3+dfsg-2ubuntu1_amd64.deb
         - /tmp/ssh-install/openssh-client_7.5p1-10_amd64.deb
+    - name: fix dependency issues as a result of manual upgrade of ssh client
+      shell: apt-get -f install
+      become: true
     - name: gvm install go{{go_version}} --binary
       gvm:
         version: go{{go_version}}
