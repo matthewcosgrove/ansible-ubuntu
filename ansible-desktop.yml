@@ -138,3 +138,7 @@
         version: go{{go_version}}
         gvm_root: "~/.gvm"
         binary: yes
+    - name: Install cf cli
+      apt:
+        deb: https://cli.run.pivotal.io/stable?release=debian64&source=pws
+      become: true
