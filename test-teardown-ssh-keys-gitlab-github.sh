@@ -14,15 +14,15 @@ then
 fi
 title_of_key="matthew@matthew-VirtualBox"
 echo Removing key $title_of_key from GitLab
-no_of_keys_before=$( curl -s -K creds-for-curl-gitlab.txt "https://gitlab.com/api/v4/user/keys" | jq '. | length' )
+no_of_keys_before=$( curl -s -K $creds_file_gitlab "https://gitlab.com/api/v4/user/keys" | jq '. | length' )
 echo no of keys BEFORE $no_of_keys_before
 echo get key id for key with title $title_of_key
-key_id=$( curl -s -K creds-for-curl-gitlab.txt "https://gitlab.com/api/v4/user/keys" |  jq --arg title "$title_of_key" '.[] | select(.title == $title).id' )
+key_id=$( curl -s -K $creds_file_gitlab "https://gitlab.com/api/v4/user/keys" |  jq --arg title "$title_of_key" '.[] | select(.title == $title).id' )
 echo $key_id
 echo attempting to delete key...
-curl -X DELETE -K creds-for-curl-gitlab.txt "https://gitlab.com/api/v4/user/keys/$key_id"
+curl -X DELETE -K $creds_file_gitlab "https://gitlab.com/api/v4/user/keys/$key_id"
 echo
-no_of_keys_after=$( curl -s -K creds-for-curl-gitlab.txt "https://gitlab.com/api/v4/user/keys" | jq '. | length' )
+no_of_keys_after=$( curl -s -K $creds_file_gitlab "https://gitlab.com/api/v4/user/keys" | jq '. | length' )
 echo no of keys AFTER $no_of_keys_after
 
 echo Removing key $title_of_key from GitHub
