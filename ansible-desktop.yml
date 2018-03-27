@@ -58,8 +58,49 @@
     # - { role: browsersync }
     # - { role: bower }
     # - { role: webpack }
+    # - role: gantsign.pin-to-launcher
+    #   pin_to_launcher: unity
+    #   pin_to_launcher_favorites:
+    #     # You'll probably need these apps pinned when using Unity.
+    #     - application: 'ubiquity.desktop' # The application search/menu
+    #       when_desktop: unity
+    #     - application: 'org.gnome.Nautilus.desktop' # The file browser
+    #     # The following two apps are less frequently used so you may want to put
+    #     # them below your other apps.
+    #     - application: 'ubuntu-software-center.desktop' # Ubuntu software center
+    #     - application: 'unity-control-center.desktop' # System settings
+    #
+    #     # Full list to choose from...
+    #     # ...
+    #     # ls /usr/share/applications
+    #     # and explanation...
+    #     # https://askubuntu.com/a/829228/811174
+    #     # and
+    #     # https://askubuntu.com/a/109168/811174
+    #
+    #     # Pin the applications of your choice below.
+    #     #
+    #     # Tip: run `gsettings get com.canonical.Unity.Launcher favorites` to
+    #     # see the apps you currently have pinned.
+    #     - application: google-chrome.desktop
+    #     - application: atom.desktop
+    #     - application: remmina.desktop
+    #     # The 'unity' favorites are not apps as such, but are placeholders in
+    #     # the Ubuntu launcher.
+    #     #
+    #     # You can reorder the items below, but be don't omit them unless you
+    #     # know what you're doing.
+    #     #
+    #     # These can be omitted if you're using DockbarX, but they'll be ignored
+    #     # anyway.
+    #     - unity: running-apps
+    #     - unity: expo-icon
+    #     - unity: devices
 
   tasks:
+    - name: Apply favorites in side bar
+      # see https://askubuntu.com/a/171723/811174
+      command: unity --replace
     - name: Ensure ssh key generated ready to upload to GitHub and GitLab
       command: ssh-keygen -t rsa -f "{{ ssh.key_pair_path }}" -N ''
       args:

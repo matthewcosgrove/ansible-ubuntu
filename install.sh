@@ -16,6 +16,7 @@ else
 fi
 
 ansible-galaxy install cmprescott.chrome
+# ansible-galaxy install gantsign.pin-to-launcher
 
 #####################################
 # Display real installation process #
