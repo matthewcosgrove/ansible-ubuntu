@@ -98,9 +98,9 @@
     #     - unity: devices
 
   tasks:
-    - name: Apply favorites in side bar
-      # see https://askubuntu.com/a/171723/811174
-      command: unity --replace
+    # - name: Apply favorites in side bar
+    #   # see https://askubuntu.com/a/171723/811174
+    #   command: unity --replace
     - name: Ensure ssh key generated ready to upload to GitHub and GitLab
       command: ssh-keygen -t rsa -f "{{ ssh.key_pair_path }}" -N ''
       args:
