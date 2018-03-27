@@ -1,2 +1,2 @@
 # https://curl.haxx.se/docs/manpage.html#-K
--F "private_token=<password>"
+--header "PRIVATE-TOKEN: <password>"
