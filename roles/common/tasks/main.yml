@@ -30,6 +30,7 @@
     - jo
     - iptables
     - sshuttle
+    - git-crypt
     # - afuse
     # - aptitude
     # - axel
