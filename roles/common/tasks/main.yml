@@ -27,7 +27,8 @@
     repo: ppa:duggan/jo
 
 - name: Ensure that Aptitude repositories are up to date
-  apt: update_cache=yes upgrade=yes cache_valid_time={{ aptcachetime }}
+  apt: update_cache=yes cache_valid_time={{ aptcachetime }}
+  # apt: update_cache=yes upgrade=yes cache_valid_time={{ aptcachetime }}
 
 - name: Install common packages
   apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time={{ aptcachetime }}
@@ -36,6 +37,8 @@
     - iptables
     - sshuttle
     - git-crypt
+    - remmina
+    - remmina-plugin-rdp
     # - afuse
     # - aptitude
     # - axel
