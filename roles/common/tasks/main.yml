@@ -11,18 +11,23 @@
 - name: Enable all repositories in sources.list
   replace: dest=/etc/apt/sources.list regexp='^#\s?deb(.+)http://(.+)/ubuntu(.+)$' replace='deb\1http://\2/ubuntu\3' backup=yes
 
-- name: Ensure that Aptitude repositories are up to date
-  apt: update_cache=yes cache_valid_time={{ aptcachetime }}
-
 - name: add apt repo for git
   become: true
   apt_repository:
     repo: ppa:git-core/ppa
 
+- name: add apt repo for remmina
+  become: true
+  apt_repository:
+    repo: ppa:remmina-ppa-team/remmina-next
+
 - name: add apt repo for jo
   become: true
   apt_repository:
     repo: ppa:duggan/jo
+
+- name: Ensure that Aptitude repositories are up to date
+  apt: update_cache=yes upgrade=yes cache_valid_time={{ aptcachetime }}
 
 - name: Install common packages
   apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time={{ aptcachetime }}
