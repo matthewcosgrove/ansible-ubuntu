@@ -88,6 +88,9 @@
     - whois
     - zip
 
+- name: Install GitLab API Python lib
+  command: pip install pyapi-gitlab
+  
 # Fails - raised as bug /ansible/ansible/issues/29509
 # - name: Upgrade installed packages
 #   apt: upgrade=yes
