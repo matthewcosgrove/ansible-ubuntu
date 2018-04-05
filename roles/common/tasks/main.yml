@@ -39,6 +39,7 @@
     - git-crypt
     - remmina
     - remmina-plugin-rdp
+    - nautilus-dropbox
     # - afuse
     # - aptitude
     # - axel
