@@ -21,6 +21,15 @@
   apt_repository:
     repo: ppa:remmina-ppa-team/remmina-next
 
+- name: add apt repo for scudcloud (slack)
+  become: true
+  apt_repository:
+    repo: ppa:rael-gc/scudcloud
+
+- name: prep for scudcloud (slack)
+  become: true
+  shell: echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
+
 - name: add apt repo for jo
   become: true
   apt_repository:
@@ -40,6 +49,7 @@
     - remmina
     - remmina-plugin-rdp
     - nautilus-dropbox
+    - scudcloud
     # - afuse
     # - aptitude
     # - axel
