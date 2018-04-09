@@ -50,6 +50,7 @@
     - remmina-plugin-rdp
     - nautilus-dropbox
     - scudcloud
+    - wireshark
     # - afuse
     # - aptitude
     # - axel
