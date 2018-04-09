@@ -183,3 +183,8 @@
       apt:
         deb: https://cli.run.pivotal.io/stable?release=debian64&source=pws
       become: true
+    - name: Install Zoom Conferencing aka zoom.us (download deb file)
+      shell: wget -nc https://zoom.us/client/latest/zoom_amd64.deb -P /tmp/zoom-install
+      become: true
+    - name: Install Zoom Conferencing aka zoom.us (install deb file)
+      shell: sudo dpkg -i /tmp/zoom-install/zoom_amd64.deb
