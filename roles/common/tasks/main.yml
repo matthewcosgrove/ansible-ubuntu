@@ -51,6 +51,7 @@
     - nautilus-dropbox
     - scudcloud
     - wireshark
+    - cntlm
     # - afuse
     # - aptitude
     # - axel
