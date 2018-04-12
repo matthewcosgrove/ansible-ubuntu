@@ -183,6 +183,9 @@
       apt:
         deb: https://cli.run.pivotal.io/stable?release=debian64&source=pws
       become: true
+    - name: Install bosh v2 cli (download go binary onto path and chmod +x)
+      shell: wget -nc https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-3.0.1-linux-amd64 -O /usr/local/bin/bosh; chmod +x /usr/local/bin/bosh
+      become: true
     - name: Install Zoom Conferencing aka zoom.us (download deb file)
       shell: wget -nc https://zoom.us/client/latest/zoom_amd64.deb -P /tmp/zoom-install
       become: true
