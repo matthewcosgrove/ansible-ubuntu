@@ -52,6 +52,7 @@
     - scudcloud
     - wireshark
     - cntlm
+    # - gnome-alsamixer # to disable mic but not wont open due to obsolete dependencies
     # - afuse
     # - aptitude
     # - axel
@@ -120,9 +121,6 @@
     # - libsqlite3-0
     # - libxcb-keysyms1
     - libxcb-xtest0
-
-- name: Install GitLab API Python lib
-  command: pip install pyapi-gitlab
 
 # Fails - raised as bug /ansible/ansible/issues/29509
 # - name: Upgrade installed packages
