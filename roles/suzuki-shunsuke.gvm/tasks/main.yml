@@ -35,7 +35,7 @@
   file:
     name: "{{ gvm_root }}/{{ item }}"
     state: directory
-  items:
+  with_items:
   - logs
   - gos
   - archive/packages
