@@ -42,6 +42,7 @@
 - name: Install common packages
   apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time={{ aptcachetime }}
   with_items:
+    - jq
     - jo
     - iptables
     - sshuttle
