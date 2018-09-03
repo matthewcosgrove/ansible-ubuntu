@@ -190,7 +190,7 @@
       with_items:
         - { line: 'export GOPATH=~/go' }
         - { line: 'export GOBIN=$GOPATH/bin' }
-        - { line: 'export PATH=$PATH:/usr/local/go/bin' }
+        - { line: 'export PATH=$PATH:/usr/local/go/bin:$GOBIN' }
         - { line: 'mkdir -p $GOPATH && mkdir -p $GOBIN' }
     # - name: Install cf cli
     #   apt:
