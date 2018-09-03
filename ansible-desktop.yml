@@ -203,6 +203,9 @@
     - name: Install bosh v2 cli (download go binary onto path and chmod +x)
       shell: wget -nc https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-3.0.1-linux-amd64 -O /usr/local/bin/bosh; chmod +x /usr/local/bin/bosh
       become: true
+    - name: Install 1password cli (download go binary onto path and chmod +x)
+      shell: wget -nc https://cache.agilebits.com/dist/1P/op/pkg/v0.5.3/op_linux_amd64_v0.5.3.zip -O /tmp/op.zip && unzip /tmp/op.zip; mv /tmp/op /usr/local/bin/op; chmod +x /usr/local/bin/op
+      become: true
     - stat: path=/opt/zoom
       register: opt_zoom
     - name: Install Zoom Conferencing aka zoom.us (download deb file)
