@@ -54,6 +54,7 @@
     - wireshark
     - cntlm
     - tree
+    - direnv
     # - gnome-alsamixer # to disable mic but not wont open due to obsolete dependencies
     # - afuse
     # - aptitude
