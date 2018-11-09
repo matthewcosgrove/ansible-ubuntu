@@ -55,6 +55,7 @@
     - cntlm
     - tree
     - direnv
+    - gource
     # - gnome-alsamixer # to disable mic but not wont open due to obsolete dependencies
     # - afuse
     # - aptitude
