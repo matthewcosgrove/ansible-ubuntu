@@ -35,6 +35,11 @@
   apt_repository:
     repo: ppa:duggan/jo
 
+- name: add apt repo for vim8
+  become: true
+  apt_repository:
+    repo: ppa:jonathonf/vim
+
 - name: Ensure that Aptitude repositories are up to date
   apt: update_cache=yes cache_valid_time={{ aptcachetime }}
   # apt: update_cache=yes upgrade=yes cache_valid_time={{ aptcachetime }}
@@ -42,6 +47,7 @@
 - name: Install common packages
   apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time={{ aptcachetime }}
   with_items:
+    - vim
     - jq
     - jo
     - iptables
