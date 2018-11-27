@@ -47,6 +47,22 @@
 - name: Install common packages
   apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time={{ aptcachetime }}
   with_items:
+    # bosh cli see https://bosh.io/docs/cli-v2-install/#ubuntu
+    - build-essential
+    - zlibc
+    - zlib1g-dev
+    - ruby
+    - ruby-dev
+    - openssl
+    - libxslt-dev
+    - libxml2-dev
+    - libssl-dev
+    - libreadline6
+    - libreadline6-dev
+    - libyaml-dev
+    - libsqlite3-dev
+    - sqlite3
+    # bosh cli END
     - vim
     - jq
     - jo
