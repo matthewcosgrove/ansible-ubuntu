@@ -115,17 +115,15 @@
       shell: git remote set-url origin git@github.com:matthewcosgrove/ansible-ubuntu.git
       args:
         executable: /bin/bash
-    - name: Install libgnome-keyring-dev for git credential helper
-      apt: pkg=libgnome-keyring-dev state=latest
-      become: true
-    - name: Set up gnome-keyring for git credential helper
-      command: make --directory=/usr/share/doc/git/contrib/credential/gnome-keyring
+    # Git 2.11+ (Q4 2016) will include a new credential helper using libsecret https://stackoverflow.com/a/40312117/752167 libgnome-keyring is specific to GNOME and is now deprecated (since January 2014).
+    - name: Set up libsecret for git credential helper
+      command: make --directory=/usr/share/doc/git/contrib/credential/libsecret
       become: true
     - name: Set up git credential helper
       git_config:
         name: credential.helper
         scope: global
-        value: /usr/share/doc/git/contrib/credential/gnome-keyring/git-credential-gnome-keyring
+        value: /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
     - name: Set up git to suppress message on push
       git_config:
         name: push.default
